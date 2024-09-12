@@ -4,7 +4,7 @@ using namespace std;
 int main()
 {
     int option;
-    cout << "1. Добавить тртрубу" << endl
+    cout << "1. Добавить трубу" << endl
         << "2. Добавить КС" << endl
         << "3. Просмотр всех объектов" << endl
         << "4. Редактировать трубу" << endl
