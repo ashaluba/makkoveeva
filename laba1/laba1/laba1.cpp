@@ -4,6 +4,10 @@ using namespace std;
 int main()
 {
     int option;
+    int name;
+    int length;
+    int diameter;
+    int repair;
     cout << "1. Добавить трубу" << endl
         << "2. Добавить КС" << endl
         << "3. Просмотр всех объектов" << endl
@@ -16,7 +20,15 @@ int main()
     {
     case 1: //add pipe
     {
-        cout << "hdhd" << endl;
+        
+        cout << "Введите название:" << endl;
+        cin >> name;
+        cout << "Введите длину:" << endl;
+        cin >> length;
+        cout << "Введите диаметр:" << endl;
+        cin >> diameter;
+        cout << "Введите признак 'в ремонте':" << endl;
+        cin >> repair;
         break;
     }
     case 2: //add cs
