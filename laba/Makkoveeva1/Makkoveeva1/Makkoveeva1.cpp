@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include <fstream>
-
 using namespace std;
 
 struct Pipe
@@ -10,49 +9,64 @@ struct Pipe
     int diameter = 0;
     bool repair = false;
 };
-
-int check_int(int& int_data)
+struct CS
 {
-    cin >> int_data;
-    while (cin.fail() || cin.peek() != '\n' || int_data <= 0)
+    string name = "None";
+    int workshops = 0;
+    int act_workshops = 0;
+    int efficiency = 0.0;
+};
+int check_int(int& int_value)
+{
+    cin >> int_value;
+    while (cin.fail() || cin.peek() != '\n' || int_value <= 0)
     {
         cin.clear();
         cin.ignore(100000, '\n');
-        cout << "\nEnter an integer data  > 0\n";
-        cin >> int_data;
+        cout << "\nEnter an integer format  > 0\n";
+        cin >> int_value;
     }
-    return int_data;
+    return int_value;
 }
-float check_float(float& float_data)
+float check_float(float& float_value)
 {
-    cin >> float_data;
-    while (cin.fail() || cin.peek() != '\n' || float_data <= 0)
+    cin >> float_value;
+    while (cin.fail() || cin.peek() != '\n' || float_value <= 0)
     {
         cin.clear();
         cin.ignore(100000, '\n');
-        cout << "\nEnter a double data > 0\n";
-        cin >> float_data;
+        cout << "\nEnter a float format > 0\n";
+        cin >> float_value;
     }
-    return float_data;
+    return float_value;
 }
-bool check_bool(bool& bool_data)
+int check_int2(int& efficiency_value)
 {
-    cin >> bool_data;
+    cin >> efficiency_value;
+    while (cin.fail() || cin.peek() != '\n' || efficiency_value <= 0 || efficiency_value > 10)
+    {
+        cin.clear();
+        cin.ignore(100000, '\n');
+        cout << "\nEnter a number from 1 to 10\n";
+        cin >> efficiency_value;
+    }
+    return efficiency_value;
+}
+bool check_bool(bool& bool_value)
+{
+    cin >> bool_value;
     while (cin.fail() || cin.peek() != '\n')
     {
         cin.clear();
         cin.ignore(100000, '\n');
-        cout << "\nEnter a boolean data\n";
-        cin >> bool_data;
+        cout << "\nEnter a boolean format\n";
+        cin >> bool_value;
     }
-    return bool_data;
+    return bool_value;
 }
-
-
 Pipe AddPipe()
 {
     Pipe new_pipe;
-    cout << endl << "Adding a new pipe..." << endl;
     cout << "Enter the pipe name: " << endl;
     cin >> new_pipe.name;
     cout << "Enter the pipe length: " << endl;
@@ -63,10 +77,9 @@ Pipe AddPipe()
     check_bool(new_pipe.repair);
     return new_pipe;
 }
-
 void PrintAddPipe(Pipe& new_pipe)
 {
-    cout << endl << "Info about your pipe..." << endl;
+    cout << endl << "Information about pipe" << endl;
     if (new_pipe.name == "None")
     {
         cout << "No pipes available!\n";
@@ -78,10 +91,37 @@ void PrintAddPipe(Pipe& new_pipe)
     }
 }
 
+CS AddCS()
+{
+    CS new_station;
+    cout << "Enter the station name: " << endl;
+    cin >> new_station.name;
+    cout << "Enter the number of workshops: " << endl;
+    check_int(new_station.workshops);
+    cout << "Enter the number of active workshops : " << endl;
+    check_int(new_station.act_workshops);
+    cout << "Enter the efficiency status: " << endl;
+    check_int2(new_station.efficiency);
+    return new_station;
+}
+void PrintAddCS(CS& new_station)
+{
+    cout << endl << "Information about CS " << endl;
+    if (new_station.name == "None")
+    {
+        cout << "No stations available!\n";
+    }
+    else
+    {
+        cout << "Name: " << new_station.name << "\tWorkshops: " << new_station.workshops
+            << "\tActive workshops: " << new_station.act_workshops << "\tEfficiency of CS: " << new_station.efficiency <<"/10"<< endl;
+    }
+}
+
 int main()
 {
     Pipe pipe0;
-   
+    CS station0;
     int option;
     while (true){
         cout << "Choose command" << endl
@@ -112,7 +152,8 @@ int main()
         }
         case 2: 
         {
-            cout << "jdku" << endl;
+            station0 = AddCS();
+            PrintAddCS(station0);
             break;
         }
         case 3: 
