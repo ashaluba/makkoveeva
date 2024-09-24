@@ -13,7 +13,7 @@ struct CS
 {
     string name = "None";
     int workshops = 0;
-    int act_workshops = 0;
+    int a_workshops = 0;
     int efficiency = 0.0;
 };
 int check_int(int& int_value)
@@ -52,6 +52,20 @@ int check_int2(int& efficiency_value)
     }
     return efficiency_value;
 }
+int check_int3(int& workshops_number, int& a_workshops_number)
+{
+    cin >> workshops_number;
+    cin >> a_workshops_number;
+    while (cin.fail() || cin.peek() != '\n' || workshops_number < a_workshops_number)
+    {
+        cin.clear();
+        cin.ignore(100000, '\n');
+        cout << "\nThe number of workshops must be > then active workshops\n";
+        cin >> workshops_number;
+        cin >> a_workshops_number;
+    }
+    return workshops_number, a_workshops_number;
+}
 bool check_bool(bool& bool_value)
 {
     cin >> bool_value;
@@ -79,7 +93,7 @@ Pipe AddPipe()
 }
 void PrintAddPipe(Pipe& new_pipe)
 {
-    cout << endl << "Information about pipe" << endl;
+    cout << endl << "Your pipe" << endl;
     if (new_pipe.name == "None")
     {
         cout << "No pipes available!\n";
@@ -99,7 +113,7 @@ CS AddCS()
     cout << "Enter the number of workshops: " << endl;
     check_int(new_station.workshops);
     cout << "Enter the number of active workshops : " << endl;
-    check_int(new_station.act_workshops);
+    check_int(new_station.a_workshops);
     cout << "Enter the efficiency status: " << endl;
     check_int2(new_station.efficiency);
     return new_station;
@@ -114,16 +128,17 @@ void PrintAddCS(CS& new_station)
     else
     {
         cout << "Name: " << new_station.name << "\tWorkshops: " << new_station.workshops
-            << "\tActive workshops: " << new_station.act_workshops << "\tEfficiency of CS: " << new_station.efficiency <<"/10"<< endl;
+            << "\tActive workshops: " << new_station.a_workshops << "\tEfficiency of CS: " << new_station.efficiency << "/10" << endl;
     }
 }
+
 
 int main()
 {
     Pipe pipe0;
     CS station0;
     int option;
-    while (true){
+    while (true) {
         cout << "Choose command" << endl
             << "1. Add pipe" << endl
             << "2. Add CS" << endl
@@ -144,44 +159,44 @@ int main()
 
         switch (option)
         {
-        case 1: 
+        case 1:
         {
             pipe0 = AddPipe();
             PrintAddPipe(pipe0);
             break;
         }
-        case 2: 
+        case 2:
         {
             station0 = AddCS();
             PrintAddCS(station0);
             break;
         }
-        case 3: 
+        case 3:
         {
             cout << "jeiw" << endl;
             break;
         }
-        case 4: 
+        case 4:
         {
             cout << "slwo" << endl;
             break;
         }
-        case 5: 
+        case 5:
         {
             cout << "slwo" << endl;
             break;
         }
-        case 6: 
+        case 6:
         {
             cout << "slwo" << endl;
             break;
         }
-        case 7: 
+        case 7:
         {
             cout << "slwo" << endl;
             break;
         }
-        case 8: 
+        case 8:
         {
             return false;
             break;
@@ -190,4 +205,3 @@ int main()
 
     }
     return 0;
-}
