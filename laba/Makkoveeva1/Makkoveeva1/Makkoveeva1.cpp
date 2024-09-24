@@ -60,7 +60,7 @@ int check_int3(int& workshops_number, int& a_workshops_number)
     {
         cin.clear();
         cin.ignore(100000, '\n');
-        cout << "\nThe number of workshops must be > then active workshops\n";
+        cout << "\nThe number of workshops must be >= then active workshops\n";
         cin >> workshops_number;
         cin >> a_workshops_number;
     }
@@ -110,10 +110,8 @@ CS AddCS()
     CS new_station;
     cout << "Enter the station name: " << endl;
     cin >> new_station.name;
-    cout << "Enter the number of workshops: " << endl;
-    check_int(new_station.workshops);
-    cout << "Enter the number of active workshops : " << endl;
-    check_int(new_station.a_workshops);
+    cout << "Enter the total number of workshops and then the number of active worckshops: " << endl;
+    check_int3(new_station.workshops,new_station.a_workshops);
     cout << "Enter the efficiency status: " << endl;
     check_int2(new_station.efficiency);
     return new_station;
@@ -131,7 +129,10 @@ void PrintAddCS(CS& new_station)
             << "\tActive workshops: " << new_station.a_workshops << "\tEfficiency of CS: " << new_station.efficiency << "/10" << endl;
     }
 }
-
+void EditCS(CS& new_station)
+{
+    cout << "Enter a new number of " << endl;
+}
 
 int main()
 {
@@ -205,3 +206,4 @@ int main()
 
     }
     return 0;
+}
