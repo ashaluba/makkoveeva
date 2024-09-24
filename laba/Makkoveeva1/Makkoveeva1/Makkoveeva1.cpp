@@ -100,8 +100,10 @@ void PrintAddPipe(Pipe& new_pipe)
     }
     else
     {
-        cout << "Name: " << new_pipe.name << "\tLength: " << new_pipe.length
-            << "\tDiameter: " << new_pipe.diameter << "\tRepair: " << new_pipe.repair << endl;
+        cout << "Name: " << new_pipe.name 
+             << "\tLength: " << new_pipe.length
+             << "\tDiameter: " << new_pipe.diameter 
+             << "\tRepair: " << new_pipe.repair << endl;
     }
 }
 
@@ -121,20 +123,40 @@ void PrintAddCS(CS& new_station)
     cout << endl << "Your CS " << endl;
     if (new_station.name == "None")
     {
-        cout << "No stations available!\n";
+        cout << "You haven't any stations\n";
     }
     else
     {
-        cout << "Name: " << new_station.name << "\tWorkshops: " << new_station.workshops
-            << "\tActive workshops: " << new_station.a_workshops << "\tEfficiency of CS: " << new_station.efficiency << "/10" << endl;
+        cout << "Name: " << new_station.name 
+             << "\tWorkshops: " << new_station.workshops
+             << "\tActive workshops: " << new_station.a_workshops 
+             << "\tEfficiency of CS: " << new_station.efficiency << "/10" << endl;
     }
 }
 void EditCS(CS& new_station)
 {
-    cout << "Enter a new number of workshops and active workshops" << endl;
-    check_int3(new_station.workshops, new_station.a_workshops);
+    if (new_station.name == "None")
+    {
+        cout << "You haven't any stations to edit\n";
+    }
+    else
+    {
+        cout << "Enter a new number of workshops and active workshops" << endl;
+        check_int3(new_station.workshops, new_station.a_workshops);
+    }
 }
-
+void EditPipe(Pipe& new_pipe)
+{
+    if (new_pipe.name == "None")
+    {
+        cout << "You haven't any stations to edit\n";
+    }
+    else
+    {
+        cout << "Enter a repair status" << endl;
+        check_bool(new_pipe.repair);
+    }
+}
 int main()
 {
     Pipe pipe0;
@@ -181,7 +203,8 @@ int main()
         }
         case 4:
         {
-            cout << "slwo" << endl;
+            EditPipe(pipe0);
+            PrintAddPipe(pipe0);
             break;
         }
         case 5:
