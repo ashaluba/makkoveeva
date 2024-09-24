@@ -14,7 +14,7 @@ struct CS
     string name = "None";
     int workshops = 0;
     int a_workshops = 0;
-    int efficiency = 0.0;
+    int efficiency = 0;
 };
 int check_int(int& int_value)
 {
@@ -47,7 +47,7 @@ int check_int2(int& efficiency_value)
     {
         cin.clear();
         cin.ignore(100000, '\n');
-        cout << "\nEnter a number from 1 to 10\n";
+        cout << "\nEnter an int number from 1 to 10\n";
         cin >> efficiency_value;
     }
     return efficiency_value;
@@ -118,7 +118,7 @@ CS AddCS()
 }
 void PrintAddCS(CS& new_station)
 {
-    cout << endl << "Information about CS " << endl;
+    cout << endl << "Your CS " << endl;
     if (new_station.name == "None")
     {
         cout << "No stations available!\n";
@@ -131,7 +131,8 @@ void PrintAddCS(CS& new_station)
 }
 void EditCS(CS& new_station)
 {
-    cout << "Enter a new number of " << endl;
+    cout << "Enter a new number of workshops and active workshops" << endl;
+    check_int3(new_station.workshops, new_station.a_workshops);
 }
 
 int main()
@@ -174,7 +175,8 @@ int main()
         }
         case 3:
         {
-            cout << "jeiw" << endl;
+            PrintAddPipe(pipe0);
+            PrintAddCS(station0);
             break;
         }
         case 4:
@@ -184,7 +186,8 @@ int main()
         }
         case 5:
         {
-            cout << "slwo" << endl;
+            EditCS(station0);
+            PrintAddCS(station0);
             break;
         }
         case 6:
@@ -203,7 +206,6 @@ int main()
             break;
         }
         }
-
     }
     return 0;
 }
