@@ -1,20 +1,20 @@
 ﻿#include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
-
 struct Pipe
 {
     string name = "None";
-    float length = 0.0;
-    int diameter = 0;
-    bool repair = false;
+    float length ;
+    int diameter;
+    bool repair;
 };
 struct CS
 {
     string name = "None";
-    int workshops = 0;
-    int a_workshops = 0;
-    int efficiency = 0;
+    int workshops;
+    int a_workshops;
+    int efficiency;
 };
 int check_int(int& int_value)
 {
@@ -28,19 +28,7 @@ int check_int(int& int_value)
     }
     return int_value;
 }
-float check_float(float& float_value)
-{
-    cin >> float_value;
-    while (cin.fail() || cin.peek() != '\n' || float_value <= 0)
-    {
-        cin.clear();
-        cin.ignore(100000, '\n');
-        cout << "\nEnter a float format > 0\n";
-        cin >> float_value;
-    }
-    return float_value;
-}
-int check_int2(int& efficiency_value)
+int check_efficiency(int& efficiency_value)
 {
     cin >> efficiency_value;
     while (cin.fail() || cin.peek() != '\n' || efficiency_value <= 0 || efficiency_value > 10)
@@ -52,7 +40,7 @@ int check_int2(int& efficiency_value)
     }
     return efficiency_value;
 }
-int check_int3(int& workshops_number, int& a_workshops_number)
+int check_workshops(int& workshops_number, int& a_workshops_number)
 {
     cin >> workshops_number;
     cin >> a_workshops_number;
@@ -69,98 +57,107 @@ int check_int3(int& workshops_number, int& a_workshops_number)
 bool check_bool(bool& bool_value)
 {
     cin >> bool_value;
+    
+    return bool_value;
+}
+void addpipe(Pipe& pipe)
+{
+    cout << "Enter the pipe name: " << endl;
+    cin >> ws;
+    getline(cin, pipe.name);
+    cout << "Enter the pipe length: " << endl;
+    cin>>pipe.length;
+    while (cin.fail() || cin.peek() != '\n' || pipe.length <= 0)
+    {
+        cin.clear();
+        cin.ignore(100000, '\n');
+        cout << "\nEnter a float format > 0\n";
+        cin >> pipe.length;
+    }
+    cout << "Enter the pipe diameter : " << endl;
+    check_int(pipe.diameter);
+    cout << "Enter the repair status(1/0): " << endl;
+    cin >> pipe.repair;
     while (cin.fail() || cin.peek() != '\n')
     {
         cin.clear();
         cin.ignore(100000, '\n');
         cout << "\nEnter a boolean format\n";
-        cin >> bool_value;
+        cin >> pipe.repair;
     }
-    return bool_value;
 }
-Pipe AddPipe()
+void addCS(CS& station)
 {
-    Pipe new_pipe;
-    cout << "Enter the pipe name: " << endl;
-    cin >> new_pipe.name;
-    cout << "Enter the pipe length: " << endl;
-    check_float(new_pipe.length);
-    cout << "Enter the pipe diameter : " << endl;
-    check_int(new_pipe.diameter);
-    cout << "Enter the repair status: " << endl;
-    check_bool(new_pipe.repair);
-    return new_pipe;
+    cout << "Enter the station name: " << endl;
+    cin >> ws;
+    getline(cin, station.name);
+    cout << "Enter the total number of workshops and then the number of active worckshops: " << endl;
+    check_workshops(station.workshops,station.a_workshops);
+    cout << "Enter the efficiency status(1-10): " << endl;
+    check_efficiency(station.efficiency);
 }
-void PrintAddPipe(Pipe& new_pipe)
+void printpipe(Pipe& pipe)
 {
     cout << endl << "Your pipe" << endl;
-    if (new_pipe.name == "None")
+    if (pipe.name == "None")
     {
-        cout << "No pipes available!\n";
+        cout << "You haven't any pipes!\n";
     }
     else
     {
-        cout << "Name: " << new_pipe.name 
-             << "\tLength: " << new_pipe.length
-             << "\tDiameter: " << new_pipe.diameter 
-             << "\tRepair: " << new_pipe.repair << endl;
+        cout << "Name: " << pipe.name 
+             << "\tLength: " << pipe.length
+             << "\tDiameter: " << pipe.diameter 
+             << "\tRepair: " << pipe.repair << endl;
     }
 }
 
-CS AddCS()
-{
-    CS new_station;
-    cout << "Enter the station name: " << endl;
-    cin >> new_station.name;
-    cout << "Enter the total number of workshops and then the number of active worckshops: " << endl;
-    check_int3(new_station.workshops,new_station.a_workshops);
-    cout << "Enter the efficiency status: " << endl;
-    check_int2(new_station.efficiency);
-    return new_station;
-}
-void PrintAddCS(CS& new_station)
+void printCS(CS& station)
 {
     cout << endl << "Your CS " << endl;
-    if (new_station.name == "None")
+    if (station.name == "None")
     {
         cout << "You haven't any stations\n";
     }
     else
     {
-        cout << "Name: " << new_station.name 
-             << "\tWorkshops: " << new_station.workshops
-             << "\tActive workshops: " << new_station.a_workshops 
-             << "\tEfficiency of CS: " << new_station.efficiency << "/10" << endl;
+        cout << "Name: " << station.name 
+             << "\tWorkshops: " << station.workshops
+             << "\tActive workshops: " << station.a_workshops 
+             << "\tEfficiency of CS: " << station.efficiency << "/10" << endl;
     }
 }
-void EditCS(CS& new_station)
+void editCS(CS& station)
 {
-    if (new_station.name == "None")
+    if (station.name == "None")
     {
         cout << "You haven't any stations to edit\n";
     }
     else
     {
         cout << "Enter a new number of workshops and active workshops" << endl;
-        check_int3(new_station.workshops, new_station.a_workshops);
+        check_workshops(station.workshops, station.a_workshops);
     }
 }
-void EditPipe(Pipe& new_pipe)
+void editpipe(Pipe& pipe)
 {
-    if (new_pipe.name == "None")
+    if (pipe.name == "None")
     {
         cout << "You haven't any stations to edit\n";
     }
     else
     {
         cout << "Enter a repair status" << endl;
-        check_bool(new_pipe.repair);
+        check_bool(pipe.repair);
     }
 }
 int main()
 {
-    Pipe pipe0;
-    CS station0;
+    Pipe yourpipe;
+    CS yourstation;
+    ifstream pipe_file("pipe.txt");
+    ifstream station_file("station.txt");
+    
     int option;
     while (true) {
         cout << "Choose command" << endl
@@ -179,38 +176,39 @@ int main()
             cin.clear();
             cin.ignore(1000, '\n');
             continue;
-        }
+        } 
+
 
         switch (option)
         {
         case 1:
         {
-            pipe0 = AddPipe();
-            PrintAddPipe(pipe0);
+            addpipe(yourpipe);
+            printpipe(yourpipe);
             break;
         }
         case 2:
         {
-            station0 = AddCS();
-            PrintAddCS(station0);
+            addCS(yourstation);
+            printCS(yourstation);
             break;
         }
         case 3:
         {
-            PrintAddPipe(pipe0);
-            PrintAddCS(station0);
+            printpipe(yourpipe);
+            printCS(yourstation);
             break;
         }
         case 4:
         {
-            EditPipe(pipe0);
-            PrintAddPipe(pipe0);
+            editpipe(yourpipe);
+            printpipe(yourpipe);
             break;
         }
         case 5:
         {
-            EditCS(station0);
-            PrintAddCS(station0);
+            editCS(yourstation);
+            printCS(yourstation);
             break;
         }
         case 6:
@@ -220,7 +218,6 @@ int main()
         }
         case 7:
         {
-            cout << "slwo" << endl;
             break;
         }
         case 8:
