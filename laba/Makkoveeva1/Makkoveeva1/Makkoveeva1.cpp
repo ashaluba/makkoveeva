@@ -2,6 +2,18 @@
 #include <fstream>
 #include <string>
 using namespace std;
+void menu()
+{
+    cout << "Choose command" << endl
+        << "1. Add pipe" << endl
+        << "2. Add CS" << endl
+        << "3. Show all objects" << endl
+        << "4. Edit pipe" << endl
+        << "5. Edit CS" << endl
+        << "6. Save" << endl
+        << "7. Download" << endl
+        << "8. Exit " << endl;
+}
 struct Pipe
 {
     string name = "None";
@@ -16,10 +28,22 @@ struct CS
     int a_workshops;
     int efficiency;
 };
+bool check_status(bool& status)
+{
+    cin >> status;
+    while (cin.fail())
+    {
+        cin.clear();
+        cin.ignore(100000, '\n');
+        cout << "\nEnter a boolean format\n";
+        cin >> status;
+    }
+    return status;
+}
 int check_int(int& int_value)
 {
     cin >> int_value;
-    while (cin.fail() || cin.peek() != '\n' || int_value <= 0)
+    while (cin.fail() || int_value <= 0)
     {
         cin.clear();
         cin.ignore(100000, '\n');
@@ -28,23 +52,11 @@ int check_int(int& int_value)
     }
     return int_value;
 }
-int check_efficiency(int& efficiency_value)
-{
-    cin >> efficiency_value;
-    while (cin.fail() || cin.peek() != '\n' || efficiency_value <= 0 || efficiency_value > 10)
-    {
-        cin.clear();
-        cin.ignore(100000, '\n');
-        cout << "\nEnter an int number from 1 to 10\n";
-        cin >> efficiency_value;
-    }
-    return efficiency_value;
-}
 int check_workshops(int& workshops_number, int& a_workshops_number)
 {
     cin >> workshops_number;
     cin >> a_workshops_number;
-    while (cin.fail() || cin.peek() != '\n' || workshops_number < a_workshops_number)
+    while (cin.fail() || workshops_number < a_workshops_number || workshops_number==0)
     {
         cin.clear();
         cin.ignore(100000, '\n');
@@ -54,20 +66,14 @@ int check_workshops(int& workshops_number, int& a_workshops_number)
     }
     return workshops_number, a_workshops_number;
 }
-bool check_bool(bool& bool_value)
-{
-    cin >> bool_value;
-    
-    return bool_value;
-}
-void addpipe(Pipe& pipe)
+void createpipe(Pipe& pipe)
 {
     cout << "Enter the pipe name: " << endl;
     cin >> ws;
     getline(cin, pipe.name);
     cout << "Enter the pipe length: " << endl;
     cin>>pipe.length;
-    while (cin.fail() || cin.peek() != '\n' || pipe.length <= 0)
+    while (cin.fail() || pipe.length <= 0)
     {
         cin.clear();
         cin.ignore(100000, '\n');
@@ -77,16 +83,9 @@ void addpipe(Pipe& pipe)
     cout << "Enter the pipe diameter : " << endl;
     check_int(pipe.diameter);
     cout << "Enter the repair status(1/0): " << endl;
-    cin >> pipe.repair;
-    while (cin.fail() || cin.peek() != '\n')
-    {
-        cin.clear();
-        cin.ignore(100000, '\n');
-        cout << "\nEnter a boolean format\n";
-        cin >> pipe.repair;
-    }
+    check_status(pipe.repair);
 }
-void addCS(CS& station)
+void createCS(CS& station)
 {
     cout << "Enter the station name: " << endl;
     cin >> ws;
@@ -94,7 +93,14 @@ void addCS(CS& station)
     cout << "Enter the total number of workshops and then the number of active worckshops: " << endl;
     check_workshops(station.workshops,station.a_workshops);
     cout << "Enter the efficiency status(1-10): " << endl;
-    check_efficiency(station.efficiency);
+    cin>>station.efficiency;
+    while (cin.fail() || station.efficiency <= 0 || station.efficiency > 10)
+    {
+        cin.clear();
+        cin.ignore(100000, '\n');
+        cout << "\nEnter an int number from 1 to 10\n";
+        cin >> station.efficiency;
+    }
 }
 void printpipe(Pipe& pipe)
 {
@@ -111,7 +117,6 @@ void printpipe(Pipe& pipe)
              << "\tRepair: " << pipe.repair << endl;
     }
 }
-
 void printCS(CS& station)
 {
     cout << endl << "Your CS " << endl;
@@ -131,7 +136,7 @@ void editCS(CS& station)
 {
     if (station.name == "None")
     {
-        cout << "You haven't any stations to edit\n";
+        cout << "You haven't any stations to edit";
     }
     else
     {
@@ -143,53 +148,74 @@ void editpipe(Pipe& pipe)
 {
     if (pipe.name == "None")
     {
-        cout << "You haven't any stations to edit\n";
+        cout << "You haven't any pipes to edit";
     }
     else
     {
         cout << "Enter a repair status" << endl;
-        check_bool(pipe.repair);
+        check_status(pipe.repair);
+    }
+}
+void savepipe(ofstream& fout, Pipe&pipe)
+{
+ 
+    if (pipe.name == "None")
+    {
+        fout << "You haven't any pipes";
+    }
+    else
+    {
+        fout << "Your pipe"<<endl;
+        fout<<"Name:" << pipe.name << endl;
+        fout << "Length:" << pipe.length << endl;
+        fout << "Diameter:" << pipe.diameter << endl;
+        fout << "Repair status:" << pipe.repair << endl;
+    }
+}
+void saveCS(ofstream& fout, CS& station)
+{
+
+    if (station.name == "None")
+    {
+        fout << "You haven't any stations";
+    }
+    else
+    {
+        fout << "Your CS" << endl;
+        fout << "Name:" << station.name << endl;
+        fout << "Workshops:" << station.workshops << endl;
+        fout << "Active workshops:" << station.a_workshops << endl;
+        fout << "Efficiency of CS:" << station.efficiency << endl;
     }
 }
 int main()
 {
     Pipe yourpipe;
     CS yourstation;
-    ifstream pipe_file("pipe.txt");
-    ifstream station_file("station.txt");
     
     int option;
-    while (true) {
-        cout << "Choose command" << endl
-            << "1. Add pipe" << endl
-            << "2. Add CS" << endl
-            << "3. Show all objects" << endl
-            << "4. Edit pipe" << endl
-            << "5. Edit CS" << endl
-            << "6. Save" << endl
-            << "7. Download" << endl
-            << "8. Exit " << endl;
+    while (1) {
+        menu();
         cin >> option;
         if (cin.fail() || option < 1 || option > 8)
         {
-            cout << " There is no such command" << endl;
+            cout << " There is no such command, enter an existing command" << endl;
             cin.clear();
             cin.ignore(1000, '\n');
+            cin >> option;
             continue;
         } 
-
-
         switch (option)
         {
         case 1:
         {
-            addpipe(yourpipe);
+            createpipe(yourpipe);
             printpipe(yourpipe);
             break;
         }
         case 2:
         {
-            addCS(yourstation);
+            createCS(yourstation);
             printCS(yourstation);
             break;
         }
@@ -213,7 +239,15 @@ int main()
         }
         case 6:
         {
-            cout << "slwo" << endl;
+            ofstream out_file;
+            out_file.open("output.txt",ios::out);
+            if (out_file.is_open())
+            {
+                savepipe(out_file, yourpipe);
+                saveCS(out_file, yourstation);
+                cout << "Information about your objects saved in file 'output.txt'" << endl;
+            }
+            
             break;
         }
         case 7:
@@ -222,7 +256,7 @@ int main()
         }
         case 8:
         {
-            return false;
+            return 0;
             break;
         }
         }
