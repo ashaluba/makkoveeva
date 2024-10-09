@@ -71,7 +71,7 @@ void createCS(CS& station)
         cin >> station.efficiency;
     }
 }
-void printpipe(const Pipe& pipe)//!!
+void printpipe(const Pipe& pipe)
 {
     cout << endl << "Your pipe" << endl;
     if (pipe.diameter == 0)
@@ -86,7 +86,7 @@ void printpipe(const Pipe& pipe)//!!
              << " Repair: " << pipe.repair << endl;
     }
 }
-void printCS(const CS& station)//!!
+void printCS(const CS& station)
 {
     cout << endl << "Your CS " << endl;
     if (station.workshops == 0)
@@ -159,30 +159,35 @@ void saveCS(ofstream& fout, CS& station)
 }
 void getpipe(ifstream& fin, Pipe& pipe)
 {
-    cout << "Your pipe" << endl;
     getline(fin, pipe.name);
-    cout << "Name: ";
-    cout << pipe.name;
     fin >> pipe.length;
-    cout << " Length: " << pipe.length;
     fin >> pipe.diameter;
-    cout << " Diameter : "<<pipe.diameter;
     fin >> pipe.repair;
-    cout << " Repair status: " << pipe.repair << endl;;
 }
 void getCS(ifstream& fin, CS& station)
 {
-        cout << "\nYour CS" << endl;
-        getline(fin, station.name);
-        cout << "Name:";//!!
-        cout << station.name;
+        getline(fin, station.name);        
         fin >> station.workshops;
-        cout <<" Workshops:"<<station.workshops;
         fin >> station.a_workshops;
-        cout << " Active workshops :"<<station.a_workshops;
         fin >> station.efficiency;
-        cout << " Efficiency of CS:"<<station.efficiency<< endl;
  }
+void getall(ifstream& fin, Pipe& pipe, CS& station)
+{
+    string str;
+    while (getline(fin, str))
+    {
+        if (str == "Your pipe")
+        {
+            getpipe(fin, pipe);
+            cout << "Data about pipe added" << endl;
+        }
+        if (str == "Your CS")
+        {
+            getCS(fin, station);
+            cout << "Data about cs added" << endl;
+        }
+    }
+}
 int main()
 {
     Pipe yourpipe;
@@ -191,15 +196,7 @@ int main()
     int option;
     while (1) {
         menu();
-        cin >> option;
-        if (cin.fail() || option < 1 || option > 8)
-        {
-            cout << " There is no such command, enter an existing command" << endl;
-            cin.clear();
-            cin.ignore(1000, '\n');
-            cin >> option;
-            continue;
-        } 
+        option=check_int(1,8);
         switch (option)
         {
         case 1:
@@ -248,35 +245,12 @@ int main()
         case 7:
         {
             ifstream fin("data.txt");
-            string str;
-            int flagp = 0;
-            int flagc = 0;
-            while (getline(fin, str))
+            yourpipe = {};
+            yourstation = {};
+            if (fin.is_open())
             {
-                if (str == "Your pipe") 
-                {
-                    getpipe(fin, yourpipe);
-                    flagp += 1;
-                    cout << "Data about pipe added" << endl;
-                }
-                if (str == "Your CS")
-                {
-                    getCS(fin, yourstation);
-                    flagc += 1;
-                    cout << "Data about cs added" << endl;
-                }
-                
-             }
-            if (flagp == 0)
-            {
-                cout << "No data about pipe in file" << endl;
+               getall(fin,yourpipe,yourstation);
             }
-            if (flagc == 0)
-            {
-                cout << "No data about cs in file" << endl;
-            }
-            
-            
             break;
         }
         case 8:
