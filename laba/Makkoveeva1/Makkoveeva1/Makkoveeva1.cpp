@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿//#include "all.h"
+#include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
@@ -166,10 +167,10 @@ void getpipe(ifstream& fin, Pipe& pipe)
 }
 void getCS(ifstream& fin, CS& station)
 {
-        getline(fin, station.name);        
-        fin >> station.workshops;
-        fin >> station.a_workshops;
-        fin >> station.efficiency;
+    getline(fin, station.name);        
+    fin >> station.workshops;
+    fin >> station.a_workshops;
+    fin >> station.efficiency;
  }
 void getall(ifstream& fin, Pipe& pipe, CS& station)
 {
@@ -179,12 +180,10 @@ void getall(ifstream& fin, Pipe& pipe, CS& station)
         if (str == "Your pipe")
         {
             getpipe(fin, pipe);
-            cout << "Data about pipe added" << endl;
         }
-        if (str == "Your CS")
+        else if (str == "Your CS")
         {
             getCS(fin, station);
-            cout << "Data about cs added" << endl;
         }
     }
 }
@@ -192,7 +191,6 @@ int main()
 {
     Pipe yourpipe;
     CS yourstation;
-    
     int option;
     while (1) {
         menu();
@@ -237,20 +235,22 @@ int main()
             {
                 savepipe(fout, yourpipe);
                 saveCS(fout, yourstation);
-               
             }
             fout.close();
             break;
         }
         case 7:
         {
-            ifstream fin("data.txt");
-            yourpipe = {};
-            yourstation = {};
+            ifstream fin;
+            fin.open("data.txt",ios::in);
+            /*yourpipe = {};
+            yourstation = {};*/
             if (fin.is_open())
             {
                getall(fin,yourpipe,yourstation);
+               fin.close();
             }
+            cout << "Data added" << endl;
             break;
         }
         case 8:
