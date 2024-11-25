@@ -1,64 +1,75 @@
 #include "csm.h"
 #include "utils.h"
+#include <string>
 using namespace std;
 
+int CS::maxid = 1;
 int CS::getid()
 {
 	return id;
 }
 
-string CS::getname() const
-{
-	return name;
-}
-
-int CS::getworkshops() const
-{
-	return workshops;
-}
-
-int CS::geta_workshops() const
-{
-	return a_workshops;
-}
-
-int CS::getefficiency() const
-{
-	return efficiency;
-}
-
-void CS::setname(string& new_name)
-{
-	name = new_name;
-}
-
-void CS::setworkshops(int& new_workshops)
-{
-	workshops = new_workshops;
-}
-
-void CS::seta_workshops(int& new_a_workshops)
-{
-	a_workshops = new_a_workshops;
-}
-
-void CS::setefficiency(int& new_efficiency)
-{
-	efficiency = new_efficiency;
-}
-
 void CS::createcs()
 {
-	cout << "ID" <<id << endl;
-	cout << "Enter the pipe name: " << endl;
-	cin >> ws;
-	getline(cin, name);
-	cout << "Enter the station length: " << endl;
+	cout << "Enter the station name: " << endl;
+	getline(cin>>ws, name);
+	cout << "Enter the number of workshops: " << endl;
 	workshops = check(1, 10000);
-	cout << "Enter the station diameter : " << endl;
-	a_workshops = check(1, 10000);
-	cout << "Enter the repair status(1/0): " << endl;
-	efficiency = check(0, 1);
+	cout << "Enter the number of active workshops(must be < total workshops) " << endl;
+	a_workshops = check(1, workshops);
+	cout << "Enter the efficiency status(1-10): " << endl;
+	efficiency = check(0, 10);
+	id = maxid;
+	maxid++;
 	
+}
+
+void CS::showcs()
+{
+	if (workshops == 0)
+	{
+		cout << "You don't have any stations\n";
+	}
+	else
+	{
+		cout << "ID " << id << endl;
+		cout << "Name: " << name << endl;
+		cout << " Workshops: " << workshops << endl;
+		cout << " Active workshops: " <<a_workshops << endl;
+		cout << " Efficiency of CS: " << efficiency << "/10" << endl;
+	}
+}
+
+void csmenu(unordered_map<int, CS>& stations)
+{
+	while (1) {
+		cout << "1. Add station " << endl;
+		cout << "2. Edit station " << endl;
+		cout << "3. Delete station " << endl;
+		cout << "0. Exit" << endl;
+		int option = check(0, 8);
+		switch (option)
+		{
+		case 1:
+		{
+			CS p;
+			p.createcs();
+			stations.emplace(p.getid(), p);
+			break;
+		};
+		case 2:
+		{
+			break;
+		};
+		case 3:
+		{
+			break;
+		};
+		case 0:
+		{
+			return;
+		};
+		}
+	}
 }
 

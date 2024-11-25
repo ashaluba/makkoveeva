@@ -1,20 +1,60 @@
-﻿// Makkoveeva2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
+﻿#include "pipem.h"
+#include "csm.h"
+#include "utils.h"
+#include <string>
 #include <iostream>
+#include <unordered_map>
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    unordered_map<int, Pipe> pipes;
+    unordered_map<int, CS> stations;
+    while (1)
+    {
+        cout << "\nChoose command" << endl
+            << "1. Pipe's actions" << endl
+            << "2. CS's actions" << endl
+            << "3. Show all objects" << endl
+            << "4. Save" << endl
+            << "5. Download" << endl
+            << "6. Exit " << endl;
+        int option = check(1, 8);
+        switch (option)
+        {
+        case 1:
+        {
+            pipemenu(pipes);
+            break;
+        }
+        case 2:
+        {
+            csmenu(stations);
+            break;
+        }
+        case 3:
+        {
+            showall(pipes, stations);
+            break;
+        }
+        case 4:
+        {
+            
+            break;
+        }
+        case 5:
+        {
+            
+            break;
+        }
+        case 6:
+        {
+            return 0;
+            break;
+        }
+        }
+    }
+    return 0;
+
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.

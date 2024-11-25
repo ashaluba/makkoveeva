@@ -1,28 +1,28 @@
 #pragma once
 #include <iostream>
-#include <string>
+#include <unordered_map>
 using namespace std;
 
 class CS
 {
-public:
-    int getid();
-    int getworkshops() const;
-    int geta_workshops() const;
-    string getname() const;
-    int getefficiency() const;
-
-    void setname(string& new_name);
-    void setworkshops(int& new_workshops);
-    void seta_workshops(int& new_a_workshops);
-    void setefficiency(int& new_efficiency);
-
-    void createcs();
 private:
+    static int maxid;
     int id;
     string name;
     int workshops = 0;
     int a_workshops;
     int efficiency;
+public:
+    int getid();
+    void createcs();
+    void showcs();
 };
-
+template <typename T>
+void showc(unordered_map<int, T>& map)
+{
+    for (auto& pair : map)
+    {
+        pair.second.showcs();
+    }
+};
+void csmenu(unordered_map<int, CS>& stations);

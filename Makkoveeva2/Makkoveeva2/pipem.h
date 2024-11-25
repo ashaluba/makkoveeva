@@ -1,31 +1,30 @@
 #pragma once
 #include <iostream>
-#include <string>
+#include <unordered_map>
 using namespace std;
 
 class Pipe
 {
-public:
-    int getid();
-    int getdiameter() const;
-    int getlength() const;
-    string getname() const;
-    bool getstatus() const;
-
-    void setname(string& new_name);
-    void setlength(int& new_length);
-    void setdiameter(int& new_diameter);
-    void setstatus(bool& new_repair);
-
-    void createpipe();
-
-
 private:
+    static int maxid;
     int id;
     string name;
-    int length;
+    double length;
     int diameter = 0;
-    bool repair=0;
+    bool repair;
+public:
+    int getid();
+    void createpipe();
+    void showpipe();
 };
+template <typename T>
+void showp(unordered_map<int, T>& map)
+{
+    for (auto& pair : map)
+    {
+        pair.second.showpipe();
+    }
+}
+void pipemenu(unordered_map<int, Pipe>& pipes);
 
 

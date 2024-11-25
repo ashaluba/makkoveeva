@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include "pipem.h"
+#include "csm.h"
 using namespace std;
 
 template <typename T>
@@ -10,8 +12,8 @@ T check(T min, T max)
     {
         cin.clear();
         cin.ignore(100000, '\n');
-        cout << "\nEnter a right format\n";
+        cout << "\nEnter a right number from "<<min<<" to "<<max<<"\n";
     }
-    cerr << value << endl;
     return value;
 }
+void showall(unordered_map<int, Pipe> pipes, unordered_map<int, CS> stations);
