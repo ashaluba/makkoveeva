@@ -2,6 +2,8 @@
 #include <iostream>
 #include "pipem.h"
 #include "csm.h"
+#include <unordered_map>
+#include <string>
 using namespace std;
 
 template <typename T>
@@ -16,4 +18,15 @@ T check(T min, T max)
     }
     return value;
 }
+
 void showall(unordered_map<int, Pipe> pipes, unordered_map<int, CS> stations);
+void save(unordered_map<int, Pipe>& pipes,  unordered_map<int, CS>& stations);
+
+void download(unordered_map<int, Pipe>& pipes, unordered_map<int, CS>& stations);
+
+template<typename T>
+void load(ifstream& file, unordered_map<int, T>& map)
+{
+    T object(file);
+    map.emplace(object.getid(), object);
+}

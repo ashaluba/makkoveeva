@@ -7,6 +7,7 @@
 
 using namespace std;
 
+
 int main()
 {
     unordered_map<int, Pipe> pipes;
@@ -14,13 +15,14 @@ int main()
     while (1)
     {
         cout << "\nChoose command" << endl
-            << "1. Pipe's actions" << endl
-            << "2. CS's actions" << endl
+            << "1. Pipe commands" << endl
+            << "2. CS commands" << endl
             << "3. Show all objects" << endl
             << "4. Save" << endl
             << "5. Download" << endl
-            << "6. Exit " << endl;
-        int option = check(1, 8);
+            //<< "6. Search" << endl//ВЫБИРАЕМ С ПОМОЩЬЮ ФИЛЬТРА КАКИЕ-ТО ТРУБЫ, А ПОТОМ ПРИМЕНЯЕМ ДЕЙСТВИЕ КО ВСЕМ ВЫБРАННЫМ
+            << "0. Exit " << endl;
+        int option = check(0, 8);
         switch (option)
         {
         case 1:
@@ -40,15 +42,19 @@ int main()
         }
         case 4:
         {
-            
+            save(pipes, stations);
             break;
         }
         case 5:
         {
-            
+            download(pipes, stations);
             break;
         }
-        case 6:
+        /*case 6:
+        {
+            break;
+        }*/
+        case 0:
         {
             return 0;
             break;

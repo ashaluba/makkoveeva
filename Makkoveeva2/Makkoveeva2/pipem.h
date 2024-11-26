@@ -1,21 +1,29 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <unordered_map>
 using namespace std;
 
 class Pipe
 {
 private:
-    static int maxid;
+
     int id;
     string name;
-    double length;
-    int diameter = 0;
+    int length;
+    double diameter = 0;
     bool repair;
 public:
+    Pipe();
     int getid();
     void createpipe();
     void showpipe();
+    static int maxid;
+    Pipe(ifstream& file);
+    void savepipe(ofstream& file);
+    void edit();
+    
+
 };
 template <typename T>
 void showp(unordered_map<int, T>& map)
@@ -26,5 +34,6 @@ void showp(unordered_map<int, T>& map)
     }
 }
 void pipemenu(unordered_map<int, Pipe>& pipes);
+void deletep(unordered_map<int, Pipe>& pipes);
 
 

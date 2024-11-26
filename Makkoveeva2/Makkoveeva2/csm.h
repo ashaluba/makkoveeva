@@ -1,22 +1,30 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <unordered_map>
 using namespace std;
 
 class CS
 {
 private:
-    static int maxid;
+    
     int id;
     string name;
     int workshops = 0;
     int a_workshops;
     int efficiency;
 public:
+    CS();
     int getid();
     void createcs();
     void showcs();
+    static int maxid;
+ 
+    CS(ifstream& file);
+    void savecs(ofstream& file);
+    
 };
+
 template <typename T>
 void showc(unordered_map<int, T>& map)
 {
@@ -26,3 +34,4 @@ void showc(unordered_map<int, T>& map)
     }
 };
 void csmenu(unordered_map<int, CS>& stations);
+void deletecs(unordered_map<int, CS>& stations);
