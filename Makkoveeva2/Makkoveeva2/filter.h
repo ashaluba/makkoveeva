@@ -29,7 +29,6 @@ unordered_set<int> findfilter(unordered_map<int, T>& map, Filter<T, P> f, P para
 	}
 	return res;
 }
-//лемъеряъ рнкэйн с оепбнцн ббедеммнцн ID оепедекюрэ
 template<typename T>
 unordered_set<int> selectbyid(unordered_map<int, T>& map, unordered_set<int>& set)
 {
@@ -56,28 +55,14 @@ template<typename T>
 void maineditpipe(unordered_map<int, T>& map)
 {
 	unordered_set<int> res;
-	
 	res=selectbyid(map, res);
 	if (res.size() != 0)
 	{
 		cout << "Enter what status you want to set" << endl;
 		bool new_rep = check(0, 1);
 		for (const int& id : res) {
-			map.find(id)->second.editPipe(new_rep);
+			map.find(id)->second.editpipe(new_rep);
 		}
-	}
-	else
-	{
-		cout << "No objects" << endl;
-	}
-}
-template<typename T>
-void maineditcs(unordered_map<int, T>& map)
-{
-	unordered_set<int> res = selectbyid(map, res);
-	if (res.size() != 0)
-	{
-		editselected(map, res);
 	}
 	else
 	{
@@ -101,7 +86,7 @@ void editselected(unordered_map<int, T>& map, unordered_set<int>& set)
 		cout << "Input new repair: ";
 		bool new_rep = check(0, 1);
 		for (const int& id : set) {
-			map.find(id)->second.editPipe(new_rep);
+			map.find(id)->second.editpipe(new_rep);
 		}
 		break;
 	}

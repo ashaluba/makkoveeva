@@ -19,7 +19,7 @@ bool Pipe::getrepair()
 {
 	return repair;
 }
-void Pipe::editPipe(bool new_rep) {
+void Pipe::editpipe(bool new_rep) {
 	this->repair = new_rep;
 }
 Pipe::Pipe()

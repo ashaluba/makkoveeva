@@ -29,6 +29,16 @@ double CS::getpersentofactiveworkshops()
 	double p = (a_workshops / workshops) * 100;
 	return p;
 }
+void CS::seta_workshops(int new_new) {
+	this->a_workshops = new_new;
+}
+int CS::getworkshops() {
+	return this->workshops;
+}
+
+int CS::geta_workshops()  {
+	return this->a_workshops;
+}
 
 void CS::createcs()
 {
@@ -42,6 +52,36 @@ void CS::createcs()
 	efficiency = check(0, 10);
 	id = maxid;
 	
+}
+void edit_cs(unordered_map<int, CS>& stations) {
+	int cs_id;
+	int new_num;
+	if (stations.empty()) {
+		cout << "No CSS" << endl;
+	}
+	else {
+		cout << "Enter id of cs to edit " << endl;
+		cs_id = check(0, numeric_limits<int>::max());
+
+		if (stations.count(cs_id) == 1) {
+			while (1) {
+				cout << "Enter new number of active workshops (0 to exit): ";
+				cin >> new_num;
+				if (new_num == 0) {
+					break;
+				}
+				if (new_num >= 0 && new_num <= stations[cs_id].getworkshops()) {
+					stations[cs_id].seta_workshops(new_num);
+				}
+				else {
+					cout << "Active workshops must be between 0 and " << stations[cs_id].getworkshops() << endl;
+				}
+			}
+		}
+		else {
+			cout << "No CS with this ID." << endl;
+		}
+	}
 }
 
 
@@ -69,6 +109,10 @@ void CS::savecs(ofstream& file)
 	file << workshops << endl;
 	file << a_workshops << endl;
 	file << efficiency << endl;
+}
+void CS::editcs(int new_num)
+{
+	this->a_workshops = new_num;
 }
 CS::CS(ifstream& file)
 {
@@ -106,7 +150,7 @@ void csmenu(unordered_map<int, CS>& stations)
 		};
 		case 2:
 		{
-			//maineditcs(stations);
+			edit_cs(stations);
 			break;
 		};
 		case 3:

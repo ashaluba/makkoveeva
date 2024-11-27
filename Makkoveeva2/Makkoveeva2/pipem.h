@@ -23,7 +23,7 @@ public:
     Pipe(ifstream& file);
     void savepipe(ofstream& file);
     string name;
-    void editPipe(bool new_rep);
+    void editpipe(bool new_rep);
    
     
 

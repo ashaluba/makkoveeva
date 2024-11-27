@@ -23,6 +23,10 @@ public:
     double getpersentofactiveworkshops();
     CS(ifstream& file);
     void savecs(ofstream& file);
+    void editcs(int new_num);
+    int getworkshops();
+    int geta_workshops();
+    void seta_workshops(int new_new);
     
 };
 

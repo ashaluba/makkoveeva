@@ -3,6 +3,9 @@
 #include "filter.h"
 #include "utils.h"
 #include <string>
+#include <chrono>
+#include <format>
+#include <fstream>
 #include <iostream>
 #include <unordered_map>
 
@@ -11,6 +14,11 @@ using namespace std;
 
 int main()
 {
+    redirect_output_wrapper cerr_out(cerr);
+    //string time = format("{:%d_%m_%Y %H_%M_%OS}", system_clock::now);
+    ofstream logfile("log");
+    if (logfile)
+        cerr_out.redirect(logfile);
     unordered_map<int, Pipe> pipes;
     unordered_map<int, CS> stations;
     while (1)

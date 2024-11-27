@@ -80,10 +80,3 @@ unordered_set<int> selectbyfilter(unordered_map<int, CS>& map)
 	}
 	return res;
 }
-void coutFoundWithId(unordered_set<int>& set)
-{
-	cout << "Found objects with id: ";
-	for (int id : set)
-		cout << id << " ";
-	cout << endl;
-}
