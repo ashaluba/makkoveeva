@@ -243,8 +243,6 @@ int main()
         {
             ifstream fin;
             fin.open("data.txt",ios::in);
-            /*yourpipe = {};
-            yourstation = {};*/
             if (fin.is_open())
             {
                getall(fin,yourpipe,yourstation);

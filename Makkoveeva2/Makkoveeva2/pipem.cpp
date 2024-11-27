@@ -1,6 +1,6 @@
 #include "pipem.h"
 #include "utils.h"
-#include <string>
+#include "filter.h"
 #include<unordered_map>
 using namespace std;
 
@@ -10,6 +10,17 @@ int Pipe::maxid = 0;
 int Pipe::getid() 
 {
 	return id;
+}
+string Pipe::getname()
+{
+	return name;
+}
+bool Pipe::getrepair()
+{
+	return repair;
+}
+void Pipe::editPipe(bool new_rep) {
+	this->repair = new_rep;
 }
 Pipe::Pipe()
 {
@@ -68,45 +79,19 @@ Pipe::Pipe(ifstream& file)
 	file >> this->repair;
 }
 
-void Pipe::edit()
-{
-	repair = !repair;
-}
 void deletep(unordered_map<int, Pipe>& pipes)
 {
-	while (1)
-	{
-		cout << "1. Delete selected pipes " << endl;
-		cout << "2. Delete all pipes " << endl;
-		cout << "0. Exit " << endl;
-		int option = check(0, 2);
-		switch (option)
-		{
-		case 1:
-		{
-			break;
-		};
-		case 2:
-		{
 			pipes.clear();
 			cout << "All pipes deleted" << endl;
 			return;
-			break;
-		};
-		case 0:
-		{
-			return;
-		};
-		}
-	}
 }
-
 void pipemenu(unordered_map<int, Pipe>& pipes)
 {
 	while (1) {
 		cout << "1. Add pipe " << endl;
 		cout << "2. Edit pipe " << endl;
-		cout << "3. Delete pipe " << endl;
+		cout << "3. Delete pipes " << endl;
+		cout << "4. Filter" << endl;
 		cout << "0. Return to menu" << endl;
 		int option = check(0, 8);
 		switch (option)
@@ -120,11 +105,17 @@ void pipemenu(unordered_map<int, Pipe>& pipes)
 		};
 		case 2:
 		{
+			maineditpipe(pipes);
 			break;
 		};
 		case 3:
 		{
 			deletep(pipes);
+			break;
+		};
+		case 4:
+		{
+			selectbyfilter(pipes);
 			break;
 		};
 		case 0:

@@ -129,12 +129,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="csm.cpp" />
+    <ClCompile Include="filter.cpp" />
     <ClCompile Include="Makkoveeva2.cpp" />
     <ClCompile Include="pipem.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="csm.h" />
+    <ClInclude Include="filter.h" />
     <ClInclude Include="pipem.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>

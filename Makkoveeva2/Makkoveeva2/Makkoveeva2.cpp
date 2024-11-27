@@ -1,5 +1,6 @@
 ﻿#include "pipem.h"
 #include "csm.h"
+#include "filter.h"
 #include "utils.h"
 #include <string>
 #include <iostream>
@@ -20,7 +21,7 @@ int main()
             << "3. Show all objects" << endl
             << "4. Save" << endl
             << "5. Download" << endl
-            //<< "6. Search" << endl//ВЫБИРАЕМ С ПОМОЩЬЮ ФИЛЬТРА КАКИЕ-ТО ТРУБЫ, А ПОТОМ ПРИМЕНЯЕМ ДЕЙСТВИЕ КО ВСЕМ ВЫБРАННЫМ
+            << "6. Search" << endl//ВЫБИРАЕМ С ПОМОЩЬЮ ФИЛЬТРА КАКИЕ-ТО ТРУБЫ, А ПОТОМ ПРИМЕНЯЕМ ДЕЙСТВИЕ КО ВСЕМ ВЫБРАННЫМ
             << "0. Exit " << endl;
         int option = check(0, 8);
         switch (option)
@@ -50,10 +51,10 @@ int main()
             download(pipes, stations);
             break;
         }
-        /*case 6:
+        case 6:
         {
             break;
-        }*/
+        }
         case 0:
         {
             return 0;

@@ -1,4 +1,5 @@
 #include "csm.h"
+#include "filter.h"
 #include "utils.h"
 #include <string>
 #include <unordered_map>
@@ -11,6 +12,10 @@ int CS::getid()
 {
 	return id;
 }
+string CS::getname()
+{
+	return name;
+}
 CS::CS()
 {
 	id = ++maxid;
@@ -18,6 +23,10 @@ CS::CS()
 	workshops = 0;
 	a_workshops = 0;
 	efficiency = 0;
+}
+double CS::getpersentofactiveworkshops()
+{
+	return (double) a_workshops / workshops * 100;
 }
 
 void CS::createcs()
@@ -33,6 +42,7 @@ void CS::createcs()
 	id = maxid;
 	
 }
+
 
 void CS::showcs()
 {
@@ -70,31 +80,9 @@ CS::CS(ifstream& file)
 }
 void deletecs(unordered_map<int, CS>& stations)
 {
-	while (1)
-	{
-		cout << "1. Delete selected pipes " << endl;
-		cout << "2. Delete all pipes " << endl;
-		cout << "0. Exit " << endl;
-		int option = check(0, 2);
-		switch (option)
-		{
-		case 1:
-		{
-			break;
-		};
-		case 2:
-		{
-			stations.clear();
-			cout << "All stations deleted" << endl;
-			return;
-			break;
-		};
-		case 0:
-		{
-			return;
-		};
-		}
-	}
+	stations.clear();
+	cout << "All stations deleted" << endl;
+	return;
 }
 
 void csmenu(unordered_map<int, CS>& stations)
@@ -116,6 +104,7 @@ void csmenu(unordered_map<int, CS>& stations)
 		};
 		case 2:
 		{
+			//maineditcs(stations);
 			break;
 		};
 		case 3:
@@ -130,4 +119,3 @@ void csmenu(unordered_map<int, CS>& stations)
 		}
 	}
 }
-

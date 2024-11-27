@@ -9,19 +9,22 @@ class Pipe
 private:
 
     int id;
-    string name;
     int length;
     double diameter = 0;
     bool repair;
 public:
     Pipe();
     int getid();
+    string getname();
+    bool getrepair();
     void createpipe();
     void showpipe();
     static int maxid;
     Pipe(ifstream& file);
     void savepipe(ofstream& file);
-    void edit();
+    string name;
+    void editPipe(bool new_rep);
+   
     
 
 };

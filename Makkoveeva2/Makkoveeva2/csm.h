@@ -16,10 +16,11 @@ private:
 public:
     CS();
     int getid();
+    string getname();
     void createcs();
     void showcs();
     static int maxid;
- 
+    double getpersentofactiveworkshops();
     CS(ifstream& file);
     void savecs(ofstream& file);
     
