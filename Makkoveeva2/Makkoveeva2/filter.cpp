@@ -9,23 +9,26 @@ bool checkbyrepair(Pipe& p, bool status)
 {
 	return p.getrepair() == status;
 }
-bool checkByWSInWork(CS& cs, double percent)
+bool checkbyactworkshops(CS& cs, double percent)
 {
-	return cs.getpersentofactiveworkshops() >= percent;
+	if(abs(cs.getpersentofactiveworkshops()-percent)<=5)
+	return cs.getpersentofactiveworkshops();
 }
 
 unordered_set<int> selectbyfilter(unordered_map<int, Pipe>& map)
 {
 	unordered_set<int> res;
-	cout << "Choose filter:\n1. Name\n2. Repair status" << endl;
+	cout << "Choose filter:" << endl;
+	cout << "1. Name" << endl;
+	cout<<"2. Repair status" << endl;
 	switch (check(1, 2))
 	{
 	case 1:
 	{
-		cout << "Enter part of name: ";
+		cout << "Enter name: ";
 		string name;
 		getline(cin >> ws, name);
-		res = findfilter(map, checkByName, name);
+		res = findfilter(map, checkbyname, name);
 		editselected(map, res);
 		break;
 	}
@@ -46,22 +49,35 @@ unordered_set<int> selectbyfilter(unordered_map<int, Pipe>& map)
 unordered_set<int> selectbyfilter(unordered_map<int, CS>& map)
 {
 	unordered_set<int> res;
-	cout << "Choose filter:\n1. Name\n2. Percent % of ws in use" << endl;
+	cout << "Choose filter:" << endl;
+	cout << "1. Name" << endl;
+	cout << "2. Percent of active workshops " << endl;
 	switch (check(1, 2))
 	{
 	case 1:
 	{
-		cout << "Enter part of name: "; 
+		cout << "Enter name: "; 
 		string name;
 		getline(cin >> ws, name);
-		res = findfilter(map, checkByName, name);
+		res = findfilter(map, checkbyname, name);
+		cout << "Selected station" << endl;
+		for (int id : res)
+		{
+			map.find(id)->second.showcs();
+		}
 		break;
 	}
 	case 2:
 	{
 		cout << "Enter %: "; 
 		double percent = check(0.0, 100.0);
-		res = findfilter(map, checkByWSInWork, percent);
+		res = findfilter(map, checkbyactworkshops, percent);
+		cout << "Selected station" << endl;
+		for (int id : res)
+		{
+			map.find(id)->second.showcs();
+		}
+		break;
 		break;
 	}
 	}

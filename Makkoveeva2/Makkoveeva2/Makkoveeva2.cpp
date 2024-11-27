@@ -21,7 +21,6 @@ int main()
             << "3. Show all objects" << endl
             << "4. Save" << endl
             << "5. Download" << endl
-            << "6. Search" << endl//ВЫБИРАЕМ С ПОМОЩЬЮ ФИЛЬТРА КАКИЕ-ТО ТРУБЫ, А ПОТОМ ПРИМЕНЯЕМ ДЕЙСТВИЕ КО ВСЕМ ВЫБРАННЫМ
             << "0. Exit " << endl;
         int option = check(0, 8);
         switch (option)
@@ -49,10 +48,6 @@ int main()
         case 5:
         {
             download(pipes, stations);
-            break;
-        }
-        case 6:
-        {
             break;
         }
         case 0:

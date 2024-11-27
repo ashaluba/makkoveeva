@@ -8,20 +8,20 @@ using namespace std;
 template<typename T, typename P>
 using Filter = bool(*)(T& val, P param);
 template<typename T>
-bool checkByName(T& val, string name)
+bool checkbyname(T& val, string name)
 {
 	size_t pos = val.getname().find(name);
 	if (pos != string::npos) return true;
 	else return false;
 }
 bool checkbyrepair(Pipe& p, bool status);
-bool checkByWSInWork(CS& cs, double percent);
+bool checkbyactworkshops(CS& cs, double percent);
 
 template<typename T, typename P>
 unordered_set<int> findfilter(unordered_map<int, T>& map, Filter<T, P> f, P param)
 {
 	unordered_set<int> res;
-	int i = 0;
+	
 	for (auto& [id, val] : map)
 	{
 		if (f(val, param))
@@ -29,6 +29,7 @@ unordered_set<int> findfilter(unordered_map<int, T>& map, Filter<T, P> f, P para
 	}
 	return res;
 }
+//лемъеряъ рнкэйн с оепбнцн ббедеммнцн ID оепедекюрэ
 template<typename T>
 unordered_set<int> selectbyid(unordered_map<int, T>& map, unordered_set<int>& set)
 {
@@ -98,8 +99,11 @@ unordered_set<int> selectbyfilter(unordered_map<int, Pipe>& map);
 template<typename T>
 void editselected(unordered_map<int, T>& map, unordered_set<int>& set)
 {
-	cout << "1. Edit\n2. Delete\0. Exit" << endl;
-	switch (check(0, 2))
+	cout << "1. Edit" << endl;
+	cout << "2. Delete" << endl;
+	cout << "3. Show selected" << endl;
+	cout << "0. Exit" << endl;
+	switch (check(0, 3))
 	{
 	case 1:
 	{
@@ -116,6 +120,15 @@ void editselected(unordered_map<int, T>& map, unordered_set<int>& set)
 			map.erase(id);
 		break;
 	}
+	case 3:
+	{
+		cout << "Selected pipes" << endl;
+		for (int id : set)
+		{
+			map.find(id)->second.showpipe();
+		}
+		break;
+	};
 	case 0:
 	{
 		break;

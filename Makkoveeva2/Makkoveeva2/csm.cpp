@@ -26,7 +26,8 @@ CS::CS()
 }
 double CS::getpersentofactiveworkshops()
 {
-	return (double) a_workshops / workshops * 100;
+	double p = (a_workshops / workshops) * 100;
+	return p;
 }
 
 void CS::createcs()
@@ -91,6 +92,7 @@ void csmenu(unordered_map<int, CS>& stations)
 		cout << "1. Add station " << endl;
 		cout << "2. Edit station " << endl;
 		cout << "3. Delete station " << endl;
+		cout << "4. Filter" << endl;
 		cout << "0. Exit" << endl;
 		int option = check(0, 8);
 		switch (option)
@@ -110,6 +112,11 @@ void csmenu(unordered_map<int, CS>& stations)
 		case 3:
 		{
 			deletecs(stations);
+			break;
+		};
+		case 4:
+		{
+			selectbyfilter(stations);
 			break;
 		};
 		case 0:
