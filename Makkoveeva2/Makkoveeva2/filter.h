@@ -33,40 +33,31 @@ unordered_set<int> findfilter(unordered_map<int, T>& map, Filter<T, P> f, P para
 template<typename T>
 unordered_set<int> selectbyid(unordered_map<int, T>& map, unordered_set<int>& set)
 {
-	unordered_set<int> res;
-	while (1)
-	{
-		cout << "1.Enter pipe's idto edit\n0.Exit" << endl;
-		int option = check(0,1);
-		switch (option)
-		{
-		case 1:
+		cout << "1.Enter pipe's id to edit" << endl;
+		cout<<"Exit" << endl;
+		unordered_set<int> res;
+		cout << "Enter all ID\nTo stop enter 0" << endl;
+		while (1)
 		{
 			int id;
 			cin >> id;
+			if (id == 0)
+				break;
 			if (set.size() == 0)
 			{
-				if (map.contains(id))
-					res.emplace(id);
+				if (map.contains(id)) res.emplace(id);
 			}
 			else
-				if (map.contains(id) and set.contains(id))
-					res.emplace(id);
-			break;
-		};
-		case 0:
-		{
-			return res;
-			break;
-		};
+				if (map.contains(id) and set.contains(id)) res.emplace(id);
 		}
-	}
-	return res;
+		return res;
 }
 template<typename T>
 void maineditpipe(unordered_map<int, T>& map)
 {
-	unordered_set<int> res = selectbyid(map, res);
+	unordered_set<int> res;
+	
+	res=selectbyid(map, res);
 	if (res.size() != 0)
 	{
 		cout << "Enter what status you want to set" << endl;
@@ -128,11 +119,11 @@ void editselected(unordered_map<int, T>& map, unordered_set<int>& set)
 			map.find(id)->second.showpipe();
 		}
 		break;
-	};
+	}
 	case 0:
 	{
 		break;
-	};
+	}
 	}
 }
 void coutFoundWithId(unordered_set<int>& set);

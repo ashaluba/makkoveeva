@@ -20,7 +20,7 @@ unordered_set<int> selectbyfilter(unordered_map<int, Pipe>& map)
 	unordered_set<int> res;
 	cout << "Choose filter:" << endl;
 	cout << "1. Name" << endl;
-	cout<<"2. Repair status" << endl;
+	cout << "2. Repair status" << endl;
 	switch (check(1, 2))
 	{
 	case 1:
@@ -34,16 +34,14 @@ unordered_set<int> selectbyfilter(unordered_map<int, Pipe>& map)
 	}
 	case 2:
 	{
-		cout << "Enter status: "; 
+		cout << "Enter status: ";
 		bool status = check(0, 1);
 		res = findfilter(map, checkbyrepair, status);
 		editselected(map, res);
 		break;
 	}
-	default:
-		break;
-	}
 	return res;
+	}
 }
 
 unordered_set<int> selectbyfilter(unordered_map<int, CS>& map)
@@ -77,7 +75,6 @@ unordered_set<int> selectbyfilter(unordered_map<int, CS>& map)
 		{
 			map.find(id)->second.showcs();
 		}
-		break;
 		break;
 	}
 	}
