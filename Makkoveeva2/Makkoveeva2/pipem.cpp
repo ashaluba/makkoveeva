@@ -105,7 +105,7 @@ void pipemenu(unordered_map<int, Pipe>& pipes)
 		};
 		case 2:
 		{
-			maineditpipe(pipes);//лемъеряъ рнкэйн с оепбнцн ббедеммнцн ID
+			maineditpipe(pipes);
 			break;
 		};
 		case 3:

@@ -30,7 +30,7 @@ int main()
             << "4. Save" << endl
             << "5. Download" << endl
             << "0. Exit " << endl;
-        int option = check(0, 8);
+        int option = check(0, 5);
         switch (option)
         {
         case 1:

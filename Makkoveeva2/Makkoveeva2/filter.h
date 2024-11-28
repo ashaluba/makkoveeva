@@ -75,40 +75,51 @@ unordered_set<int> selectbyfilter(unordered_map<int, Pipe>& map);
 template<typename T>
 void editselected(unordered_map<int, T>& map, unordered_set<int>& set)
 {
-	cout << "1. Edit" << endl;
-	cout << "2. Delete" << endl;
-	cout << "3. Show selected" << endl;
-	cout << "0. Exit" << endl;
-	switch (check(0, 3))
+	while (1)
 	{
-	case 1:
-	{
-		cout << "Input new repair: ";
-		bool new_rep = check(0, 1);
-		for (const int& id : set) {
-			map.find(id)->second.editpipe(new_rep);
-		}
-		break;
-	}
-	case 2:
-	{
-		for (int id : set)
-			map.erase(id);
-		break;
-	}
-	case 3:
-	{
-		cout << "Selected pipes" << endl;
-		for (int id : set)
+		cout << "1. Edit" << endl;
+		cout << "2. Delete" << endl;
+		cout << "3. Show selected" << endl;
+		cout << "0. Exit" << endl;
+		switch (check(0, 3))
 		{
-			map.find(id)->second.showpipe();
+		case 1:
+		{
+			cout << "Input new repair: ";
+			bool new_rep = check(0, 1);
+			for (const int& id : set) {
+				map.find(id)->second.editpipe(new_rep);
+			}
+			break;
 		}
-		break;
-	}
-	case 0:
-	{
-		break;
-	}
+		case 2:
+		{
+			for (int id : set)
+				map.erase(id);
+			set.clear();
+			break;
+		}
+		case 3://ядекюрэ опнбепйс врнаш еякх мер бшапюммшу, рн бшбндхкняэ яннаыемхе!
+		{
+			cout << "Selected pipes" << endl;
+			if (set.empty())
+			{
+				cout << "No selected" << endl;
+			}
+			else
+			{
+				for (int id : set)
+				{
+					map.find(id)->second.showpipe();
+				}
+			}
+			break;
+		}
+		case 0:
+		{
+			return;
+		}
+		}
 	}
 }
-void coutFoundWithId(unordered_set<int>& set);
+
