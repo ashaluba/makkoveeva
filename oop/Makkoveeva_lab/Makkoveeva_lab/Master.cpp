@@ -6,32 +6,32 @@ using namespace std;
 
 void Master::create_master()
 {
-	cout << "Enter master's name: " << endl;
-	getline(cin >> ws, name);
-	cout << "Enter master's experience : " << endl;
+	wcout << "Enter master's name: " << endl;
+	getline(wcin >> ws, name);
+	wcout << "Enter master's experience : " << endl;
 	experience = check(1, 40);
-	cout << "Enter master's speciality: " << endl;
-	getline(cin >> ws, speciality);
+	wcout << "Enter master's speciality: " << endl;
+	getline(wcin >> ws, speciality);
 }
 
 void Master::show_info()
 {
-	cout << "Master's name: " << name << endl;
-	cout << "Master's experience: " << experience << endl;
-	cout << "Master's speciality: " << speciality << endl;
+	wcout << "Master's name: " << name << endl;
+	wcout << "Master's experience: " << experience << endl;
+	wcout << "Master's speciality: " << speciality << endl;
 }
 
-void Master::save(ofstream& out)
+void Master::save(wofstream& out)
 {
 	out << name << endl;
 	out << experience << endl;
 	out << speciality << endl;
 }
 
-void Master::load(ifstream& in)
+void Master::load(wifstream& in)
 {
 	getline(in, name);
 	in >> experience;
-	in.ignore(); // пропускаем \n после числа
+	in.ignore(); 
 	getline(in, speciality);
 }

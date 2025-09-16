@@ -7,13 +7,13 @@ class Master
 {
 private:
 	//во второй лабе добавить сюда название салона как класс-потомок
-	string name;
+	wstring name;
 	int experience;
-	string speciality;
+	wstring speciality;
 public:
 	void create_master();
 	void show_info();
-	void save(ofstream& out);
-	void load(ifstream& in);
+	void save(wofstream& out);
+	void load(wifstream& in);
 };
 

@@ -2,11 +2,19 @@
 #include "Master.h"
 #include "Studio.h"
 #include <iostream>
+#include <locale>
 using namespace std;
+
+void setupLocale() {
+	setlocale(LC_ALL, "rus");
+	locale::global(locale("rus_rus.866"));
+	wcin.imbue(locale("rus_rus.866"));
+	wcout.imbue(locale("rus_rus.866"));
+}
 
 void PrintMenu()
 {
-	cout << "1. Input master" << endl
+	wcout << "1. Input master" << endl
 		<< "2. Print masters" << endl
 		<< "3. Save to file" << endl
 		<< "4. Load from file" << endl
@@ -36,12 +44,12 @@ int main()
 		}
 		case 3:
 		{
-			studio.save_to_file("masters.txt");
+			studio.save_to_file(L"masters.txt");
 			break;
 		}
 		case 4:
 		{
-			studio.load_from_file("masters.txt");
+			studio.load_from_file(L"masters.txt");
 			break;
 		}
 		case 5:
@@ -57,4 +65,3 @@ int main()
 	}
 	return 0;
 }
-

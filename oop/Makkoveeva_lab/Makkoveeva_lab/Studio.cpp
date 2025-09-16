@@ -11,16 +11,16 @@ Beauty_studio::~Beauty_studio()
 
 void Beauty_studio::add_master()
 {
-    Master* newMaster = new Master(); 
+    Master* newMaster = new Master();
     newMaster->create_master();
     masters.push_back(newMaster);
-    cout << "Master added" << endl;
+    wcout << "Master added" << endl;
 }
 
 void Beauty_studio::show_masters()
 {
     if (masters.empty())
-        cout << "There is no masters" << endl;
+        wcout << "There is no masters" << endl;
     else
         for (const auto& master : masters)
         {
@@ -28,19 +28,19 @@ void Beauty_studio::show_masters()
         }
 }
 
-void Beauty_studio::load_from_file(const string & file)
+void Beauty_studio::load_from_file(const wstring& file)
 {
-    ifstream infile(file);
+    wifstream infile(file);
     clear();
     int count;
     infile >> count;
     infile.ignore();
     for (int i = 0; i < count; ++i) {
         Master* newMaster = new Master();
-        newMaster->load(infile); 
+        newMaster->load(infile);
         masters.push_back(newMaster);
     }
-    cout << "Data loaded " << endl;
+    wcout << "Data loaded " << endl;
 }
 
 void Beauty_studio::clear()
@@ -49,17 +49,16 @@ void Beauty_studio::clear()
         delete master;
     }
     masters.clear();
-    cout << "All masters cleared" << endl;
+    wcout << "All masters cleared" << endl;
 }
 
-void Beauty_studio::save_to_file(const string& file)
+void Beauty_studio::save_to_file(const wstring& file)
 {
-    ofstream outfile(file);
+    wofstream outfile(file);
     outfile << masters.size() << endl;
     for (const auto& master : masters) {
         master->save(outfile);
     }
-    cout << "Data saved" << endl;
+    wcout << "Data saved" << endl;
 }
-
 

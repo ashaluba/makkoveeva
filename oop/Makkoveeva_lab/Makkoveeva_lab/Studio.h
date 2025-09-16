@@ -13,8 +13,7 @@ public:
 	~Beauty_studio();
 	void add_master();
 	void show_masters();
-	void save_to_file(const string& file);
-	void load_from_file(const string & file);
+	void save_to_file(const wstring& file);
+	void load_from_file(const wstring& file);
 	void clear();
 };
-
