@@ -6,7 +6,7 @@ using namespace std;
 class Master
 {
 private:
-	string studio;
+	//во второй лабе добавить сюда название салона как класс-потомок
 	string name;
 	int experience;
 	string speciality;

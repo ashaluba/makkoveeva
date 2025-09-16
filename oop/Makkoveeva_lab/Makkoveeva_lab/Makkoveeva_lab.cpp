@@ -4,27 +4,23 @@
 #include <iostream>
 using namespace std;
 
-
-
 int main()
 {
 	Beauty_studio studio;
-	int option = check(0, 4);
-	while (1)
+	while (true)
 	{
 		PrintMenu();
-		
+		int option = check(0, 4);
 		switch (option)
 		{
 		case 1:
 		{
-			studio.add_master;
+			studio.add_master();
 			break;
 		}
 		case 2:
 		{
-			for (auto& st : studio)
-				cout << st << endl;
+			studio.show_masters();
 			break;
 		}
 		case 3:

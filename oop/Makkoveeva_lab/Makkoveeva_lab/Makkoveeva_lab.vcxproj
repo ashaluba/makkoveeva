@@ -130,6 +130,7 @@
     <ClCompile Include="Studio.cpp" />
     <ClCompile Include="Makkoveeva_lab.cpp" />
     <ClCompile Include="Master.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Studio.h" />
