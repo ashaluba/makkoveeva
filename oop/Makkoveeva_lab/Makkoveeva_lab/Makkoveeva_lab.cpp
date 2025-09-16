@@ -4,13 +4,24 @@
 #include <iostream>
 using namespace std;
 
+void PrintMenu()
+{
+	cout << "1. Input master" << endl
+		<< "2. Print masters" << endl
+		<< "3. Save to file" << endl
+		<< "4. Load from file" << endl
+		<< "5. Delete all masters" << endl
+		<< "0. Exit" << endl
+		<< "Choose action: ";
+}
+
 int main()
 {
 	Beauty_studio studio;
 	while (true)
 	{
 		PrintMenu();
-		int option = check(0, 4);
+		int option = check(0, 5);
 		switch (option)
 		{
 		case 1:
@@ -25,32 +36,18 @@ int main()
 		}
 		case 3:
 		{
-			/*ofstream fout;
-			fout.open("data.txt", ios::out);
-			if (fout.is_open())
-			{
-				fout << group.size() << endl;
-				for (Student& st : group)
-					SaveStudent(fout, st);
-				fout.close();
-			}
-			break;*/
+			studio.save_to_file("masters.txt");
+			break;
 		}
 		case 4:
 		{
-			/*ifstream fin;
-			fin.open("data.txt", ios::in);
-			if (fin.is_open())
-			{
-				int count;
-				fin >> count;
-				while (count--)
-				{
-					group.push_back(LoadStudent(fin));
-				}
-				fin.close();
-			}
-			break;*/
+			studio.load_from_file("masters.txt");
+			break;
+		}
+		case 5:
+		{
+			studio.clear();
+			break;
 		}
 		case 0:
 		{

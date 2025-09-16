@@ -13,5 +13,7 @@ private:
 public:
 	void create_master();
 	void show_info();
+	void save(ofstream& out);
+	void load(ifstream& in);
 };
 
