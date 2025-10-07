@@ -5,20 +5,19 @@
 #include <iostream>
 #include <fstream>
 
-Beauty_studio::~Beauty_studio()
+Beauty_studio_Makkoveeva::~Beauty_studio_Makkoveeva()
 {
     clear();
 }
 
-void Beauty_studio::add_master(shared_ptr<Master> T)
+void Beauty_studio_Makkoveeva::add_master(shared_ptr<Master_Makkoveeva> newMaster)
 {
-    shared_ptr<Master> newMaster = T;
     newMaster->create();
     masters.push_back(newMaster);
     wcout << "Master added" << endl;
 }
 
-void Beauty_studio::show_masters()
+void Beauty_studio_Makkoveeva::show_masters()
 {
     if (masters.empty())
         wcout << "There is no masters" << endl;
@@ -29,46 +28,23 @@ void Beauty_studio::show_masters()
         }
 }
 
-//void Beauty_studio::load_from_file(const wstring& file)
-//{
-//    wifstream infile(file);
-//    clear();
-//    int count;
-//    infile >> count;
-//    infile.ignore();
-//    for (int i = 0; i < count; ++i) {
-//        shared_ptr<Top_master>newMaster = make_shared<Master>();
-//        newMaster->load(infile);
-//        masters.push_back(newMaster);
-//    }
-//    wcout << "Data loaded " << endl;
-//}
-void Beauty_studio::load_from_file(ifstream& file)
+void Beauty_studio_Makkoveeva::load_from_file(ifstream& file)
 {
     boost::archive::binary_iarchive ia(file);
-    ia >> *this;
+    ia >> masters;
     wcout << L"Data loaded successfully" << endl;
 }
 
-//void Beauty_studio::save_to_file(const wstring& file)
-//{
-//    wofstream outfile(file);
-//    outfile << masters.size() << endl;
-//    for (const auto& master : masters) {
-//        master->save(outfile);
-//    }
-//    wcout << "Data saved" << endl;
-//}
 
-void Beauty_studio::save_to_file(ofstream& file)
+void Beauty_studio_Makkoveeva::save_to_file(ofstream& file)
 {
     boost::archive::binary_oarchive oa(file);
-    oa << *this;
+    oa << masters;
     wcout << L"Data saved successfully" << endl;
 }
 
 
-void Beauty_studio::clear()
+void Beauty_studio_Makkoveeva::clear()
 {
     masters.clear();
     wcout << "All masters cleared" << endl;

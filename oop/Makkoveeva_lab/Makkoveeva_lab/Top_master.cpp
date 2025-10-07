@@ -4,11 +4,11 @@
 #include <fstream>
 using namespace std;
 
-Top_master::Top_master() : Master() {}
+Top_master_Makkoveeva::Top_master_Makkoveeva() : Master_Makkoveeva() {}
 
-Top_master::Top_master(wstring& name, int experience, wstring& speciality, wstring& comp_courses, wstring& phone_number):Master(name, experience, speciality), comp_courses(comp_courses), phone_number(phone_number){}
+Top_master_Makkoveeva::Top_master_Makkoveeva(wstring& name, int experience, wstring& speciality, wstring& comp_courses, wstring& phone_number):Master_Makkoveeva(name, experience, speciality), comp_courses(comp_courses), phone_number(phone_number){}
 
-void Top_master::create()
+void Top_master_Makkoveeva::create()
 {
 	wcout << "Enter master's name: " << endl;
 	getline(wcin >> ws, name);
@@ -22,7 +22,7 @@ void Top_master::create()
 	getline(wcin >> ws, phone_number);
 }
 
-void Top_master::show_info()
+void Top_master_Makkoveeva::show_info()
 {
 	wcout << "Master's name: " << name << endl;
 	wcout << "Master's experience: " << experience << endl;
@@ -30,23 +30,3 @@ void Top_master::show_info()
 	wcout << "Master's comppleted courses: " << comp_courses << endl;
 	wcout << "Master's phone number: " << phone_number << endl;
 }
-
-void Top_master::load(wifstream& in)
-{
-	getline(in, name);
-	in >> experience;
-	in.ignore();
-	getline(in, speciality);
-	getline(in, comp_courses);
-	getline(in, phone_number);
-}
-
-void Top_master::save(wofstream& out)
-{
-	out << name << endl;
-	out << experience << endl;
-	out << speciality << endl;
-	out << comp_courses << endl;
-	out << phone_number << endl;
-}
-

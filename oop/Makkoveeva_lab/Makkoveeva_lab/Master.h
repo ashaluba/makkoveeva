@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Master
+class Master_Makkoveeva
 {
 protected:
 	wstring name;
@@ -16,13 +16,11 @@ protected:
 	wstring speciality;
 
 public:
-	virtual ~Master() = default;
-	Master() : name(L""), experience(0), speciality(L"") {}
-	Master(wstring name, int experience, wstring speciality);
+	virtual ~Master_Makkoveeva() = default;
+	Master_Makkoveeva() : name(L""), experience(0), speciality(L"") {}
+	Master_Makkoveeva(wstring name, int experience, wstring speciality);
 	virtual void create();
 	virtual void show_info();
-	virtual void save(wofstream& out);
-	virtual void load(wifstream& in);
 
 	friend class boost::serialization::access;
 	template<class Archive>
@@ -33,4 +31,4 @@ public:
 	}
 };
 
-BOOST_CLASS_EXPORT_KEY(Master)
+BOOST_CLASS_EXPORT_KEY(Master_Makkoveeva)

@@ -14,10 +14,10 @@
 
 using namespace std;
 
-class Beauty_studio
+class Beauty_studio_Makkoveeva
 {
 private:
-	vector <shared_ptr<Master >> masters;
+	vector <shared_ptr<Master_Makkoveeva>> masters;
 	friend class boost::serialization::access;
 
 	template<class Archive>
@@ -25,8 +25,8 @@ private:
 		ar& masters;
 	}
 public:
-	~Beauty_studio();
-	void add_master(shared_ptr<Master> T);
+	~Beauty_studio_Makkoveeva();
+	void add_master(shared_ptr<Master_Makkoveeva> T);
 	void show_masters();
 	void save_to_file(ofstream& file);
 	void load_from_file(ifstream& file);

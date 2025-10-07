@@ -9,8 +9,8 @@
 
 using namespace std;
 
-BOOST_CLASS_EXPORT_IMPLEMENT(Master)
-BOOST_CLASS_EXPORT_IMPLEMENT(Top_master)
+BOOST_CLASS_EXPORT_IMPLEMENT(Master_Makkoveeva)
+BOOST_CLASS_EXPORT_IMPLEMENT(Top_master_Makkoveeva)
 
 void setupLocale() {
 	setlocale(LC_ALL, "rus");
@@ -34,7 +34,7 @@ void PrintMenu()
 int main()
 {
 	setupLocale();
-	Beauty_studio studio;
+	Beauty_studio_Makkoveeva studio;
 	while (true)
 	{
 		PrintMenu();
@@ -43,12 +43,12 @@ int main()
 		{
 		case 1:
 		{
-			studio.add_master(make_shared<Master>());
+			studio.add_master(make_shared<Master_Makkoveeva>());
 			break;
 		}
 		case 2:
 		{
-			studio.add_master(make_shared<Top_master>());
+			studio.add_master(make_shared<Top_master_Makkoveeva>());
 			break;
 		}
 		case 3:
