@@ -4,7 +4,9 @@
 #include <fstream>
 using namespace std;
 
-void Master::create_master()
+Master::Master(wstring name, int experience, wstring speciality) : name(name), experience(experience), speciality(speciality) {}
+
+void Master::create()
 {
 	wcout << "Enter master's name: " << endl;
 	getline(wcin >> ws, name);
@@ -35,3 +37,4 @@ void Master::load(wifstream& in)
 	in.ignore(); 
 	getline(in, speciality);
 }
+

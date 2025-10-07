@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{92d573bd-6991-4b44-b458-30661c3c4858}</ProjectGuid>
-    <RootNamespace>Makkoveevalab</RootNamespace>
+    <ProjectGuid>{aa49a6a6-6ce3-46a0-813d-c6b9a865303a}</ProjectGuid>
+    <RootNamespace>Makkoveevalab1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -64,17 +64,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="..\boost\boost.build\Microsoft.Cpp.x64.user.props" />
-    <Import Project="..\boost\boost.build\Microsoft.Cpp.Win32.user.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\Люба\Desktop\boost_1_89_0\boost_1_89_0;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Люба\Desktop\boost_1_89_0\boost_1_89_0\stage\lib;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -109,7 +104,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Люба\Desktop\boost_1_89_0\boost_1_89_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,16 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Studio.cpp" />
-    <ClCompile Include="Makkoveeva_lab.cpp" />
-    <ClCompile Include="Master.cpp" />
-    <ClCompile Include="Top_master.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Studio.h" />
-    <ClInclude Include="Master.h" />
-    <ClInclude Include="Top_master.h" />
-    <ClInclude Include="utils.h" />
+    <ClCompile Include="Makkoveeva_lab1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
