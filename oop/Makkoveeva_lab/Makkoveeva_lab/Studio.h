@@ -18,12 +18,7 @@ class Beauty_studio_Makkoveeva
 {
 private:
 	vector <shared_ptr<Master_Makkoveeva>> masters;
-	friend class boost::serialization::access;
-
-	template<class Archive>
-	void serialize(Archive& ar, const unsigned int version) {
-		ar& masters;
-	}
+	
 public:
 	~Beauty_studio_Makkoveeva();
 	void add_master(shared_ptr<Master_Makkoveeva> T);
